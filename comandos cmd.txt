@@ -1,0 +1,4 @@
+comando para iniciar server erxpress: nodemon server
+comando para iniciar angular: npm start
+comando para agregar componentes: ng g c components/<nombre archivo> --spec=false
+
