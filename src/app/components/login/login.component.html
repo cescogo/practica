@@ -1,0 +1,29 @@
+
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">User name</label>
+        <input type="text" class="form-control" name="user_name" formControlName="user_name" #user_name placeholder="coloque user name"/>
+      </div>
+      <div *ngIf="angForm.controls['user_name'].invalid && (angForm.controls['user_name'].dirty || angForm.controls['user_name'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['user_name'].errors.required">
+          Users name is required.
+        </div>
+      
+    </div>
+      <div class="form-group">
+        <label class="col-md-4">Password</label>
+        <input type="password" class="form-control" name="unit_price" formControlName="unit_price" #unit_price  placeholder="coloque password"/>
+      </div>
+      <div *ngIf="angForm.controls['unit_price'].invalid && (angForm.controls['unit_price'].dirty || angForm.controls['unit_price'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['unit_price'].errors.required">
+          Password is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click)="login(user_name.value, unit_price.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">login</button>
+      </div>
+    </form>
+  </div>
+</div>

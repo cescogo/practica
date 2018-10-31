@@ -1,0 +1,91 @@
+<div class="dropdown">
+    <button class="dropbtn">
+      Usuarios</button>
+      <div class="dropdown-content">
+          <a (click)="cambiar('create')" class="nav-link" >
+              Creacion de Usuarios
+            </a>  
+          
+              <a (click)="cambiar('index')" class="nav-link" >
+                  mantenimiento de usuarios
+                </a>
+      </div>
+  </div>
+      <div class="dropdown">
+   
+      <button class="dropbtn">
+          Bodegas</button>
+          <div class="dropdown-content">
+              <a (click)="cambiar('createbod')" class="nav-link" >
+                  Creacion de Bodegas
+                </a>  
+             <a (click)="cambiar('listbod')" class="nav-link" routerLinkActive="active">
+                mantenimiento de bodegas
+              </a>
+          </div>
+      </div>
+      <div class="dropdown">
+          <button class="dropbtn">
+              Articulos</button>
+              <div class="dropdown-content">
+                  <a (click)="cambiar('createart')" class="nav-link" routerLinkActive="active">
+                      creacion de articulos
+                    </a>
+                 
+                  
+                    <a (click)="cambiar('listart')" class="nav-link" routerLinkActive="active">
+                      Mantenimiento de articulos
+                    </a>
+              </div>
+        
+  </div>
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="angForm" novalidate>
+          <div class="form-group">
+              <label class="col-md-4">Codigo del articulo</label>
+              <input type="text" class="form-control" name="codigo" formControlName="codigo" #codigo placeholder="coloque codigo articulo"/>
+            </div>
+            <div *ngIf="angForm.controls['codigo'].invalid && (angForm.controls['codigo'].dirty || angForm.controls['codigo'].touched)" class="alert alert-danger">
+              <div *ngIf="angForm.controls['codigo'].errors.required">
+               El codigo del articulo es requerido.
+              </div>
+            </div>
+        <div class="form-group">
+          <label class="col-md-4">Nombre articulo</label>
+          <input type="text" class="form-control" name="articulo_name" formControlName="articulo_name" #articulo_name placeholder="coloque nombre articulo"/>
+        </div>
+        <div *ngIf="angForm.controls['articulo_name'].invalid && (angForm.controls['articulo_name'].dirty || angForm.controls['articulo_name'].touched)" class="alert alert-danger">
+          <div *ngIf="angForm.controls['articulo_name'].errors.required">
+           El nombre del articulo es requerido.
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-4">Descripcion del articulo</label>
+          <textarea class="form-control" name="descripcion" formControlName="description" #description  placeholder="coloque la descripcion del articulo"> </textarea>
+        </div>
+        
+        <div *ngIf="angForm.controls['description'].invalid && (angForm.controls['description'].dirty || angForm.controls['description'].touched)" class="alert alert-danger">
+            <div *ngIf="angForm.controls['description'].errors.required">
+             El la descripcion del articulo es requerida.
+            </div>
+          </div>
+        
+        <div class="form-group">
+            <label class="col-md-4">Precio del articulo</label>
+            <input type="number" class="form-control" name="precio" formControlName="precio" #precio placeholder="coloque precio del articulo"/>
+          </div>
+          <div *ngIf="angForm.controls['precio'].invalid && (angForm.controls['precio'].dirty || angForm.controls['precio'].touched)" class="alert alert-danger">
+            <div *ngIf="angForm.controls['precio'].errors.required">
+             El precio del articulo es requerido.
+            </div>
+          </div>  
+       
+        <div class="form-group">
+          <button (click)="updateAdArticulo(codigo.value, articulo_name.value,description.value,precio.value)" class="btn btn-primary">Editar articulo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  

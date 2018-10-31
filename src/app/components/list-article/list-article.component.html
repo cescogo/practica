@@ -1,0 +1,59 @@
+<div class="dropdown">
+        <button class="dropbtn" *ngIf="show">
+          Usuarios</button>
+          <div class="dropdown-content">
+                <a (click)="cambiar('create')" class="nav-link" >
+                        Creacion de Usuarios
+                      </a>  
+              
+                  <a (click)="cambiar('index')" class="nav-link" >
+                      mantenimiento de usuarios
+                    </a>
+          </div>
+      </div>
+          <div class="dropdown">
+       
+          <button class="dropbtn">
+              Bodegas</button>
+              <div class="dropdown-content">
+                  <a (click)="cambiar('createbod')" class="nav-link" >
+                      Creacion de Bodegas
+                    </a>  
+                 <a (click)="cambiar('listbod')" class="nav-link" routerLinkActive="active">
+                    mantenimiento de bodegas
+                  </a>
+              </div>
+          </div>
+          <div class="dropdown">
+              <button class="dropbtn">
+                  Articulos</button>
+                  <div class="dropdown-content">
+                      <a (click)="cambiar('createart')" class="nav-link" routerLinkActive="active">
+                          creacion de articulos
+                        </a>
+                     
+                  </div>
+            
+      </div>
+<table class="table table-hover">
+  <thead>
+  <tr>
+      <td>codigo</td>
+      <td>Nombre</td>
+      <td>descripcion</td>
+      <td>precio</td>
+      <td colspan="2">Actions</td>
+  </tr>
+  </thead>
+
+  <tbody>
+      <tr *ngFor="let adunit of adunits">
+          <td>{{ adunit.codigo }}</td>
+          <td>{{ adunit.articulo_name }}</td>
+          <td>{{ adunit.descripcion }}</td>
+          <td>{{ adunit.precio }}</td>
+          <td><a [routerLink]="['/editart', adunit._id]" class="btn btn-primary">Edit</a></td>
+          <td><button (click)="deleteAdArticulo(adunit._id)"  class="btn btn-danger">Delete</button></td>
+      </tr>
+  </tbody>
+</table>

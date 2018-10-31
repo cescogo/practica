@@ -1,0 +1,67 @@
+<div class="dropdown">
+    <button class="dropbtn">
+      Usuarios</button>
+      <div class="dropdown-content">
+          <a (click)="cambiar('create')" class="nav-link" >
+              Creacion de Usuarios
+            </a>            
+              <a (click)="cambiar('index')" class="nav-link" >
+                  mantenimiento de usuarios
+                </a>
+      </div>
+  </div>
+      <div class="dropdown">
+   
+      <button class="dropbtn">
+          Bodegas</button>
+          <div class="dropdown-content">
+             
+             <a (click)="cambiar('listbod')" class="nav-link" routerLinkActive="active">
+                mantenimiento de bodegas
+              </a>
+          </div>
+      </div>
+      <div class="dropdown">
+          <button class="dropbtn">
+              Articulos</button>
+              <div class="dropdown-content">
+                  <a (click)="cambiar('createart')" class="nav-link" routerLinkActive="active">
+                      creacion de articulos
+                    </a>
+                 
+                  
+                    <a (click)="cambiar('listart')" class="nav-link" routerLinkActive="active">
+                      Mantenimiento de articulos
+                    </a>
+              </div>
+        
+  </div>
+
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">Bodega name</label>
+        <input type="text" class="form-control" name="bodega_name" formControlName="bodega_name" #bodega_name placeholder="coloque bodega name"/>
+      </div>
+      <div *ngIf="angForm.controls['bodega_name'].invalid && (angForm.controls['bodega_name'].dirty || angForm.controls['bodega_name'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['bodega_name'].errors.required">
+          Bodega name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Encargado de Bodega</label>
+        <input type="text" class="form-control" name="encargado" formControlName="encargado" #encargado  placeholder="coloque nombre del encargado"/>
+      </div>
+      <div *ngIf="angForm.controls['encargado'].invalid && (angForm.controls['encargado'].dirty || angForm.controls['encargado'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['encargado'].errors.required">
+          Nombre del encargado de bodega requerido.
+        </div>
+      </div>
+     
+      <div class="form-group">
+        <button (click)="addAdBodega(bodega_name.value, encargado.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Create Bodega</button>
+      </div>
+    </form>
+  </div>
+</div>

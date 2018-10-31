@@ -1,0 +1,82 @@
+<div class="dropdown">
+  <button class="dropbtn">
+    Usuarios</button>
+    <div class="dropdown-content">
+            
+        
+            <a (click)="cambiar('index')" class="nav-link" >
+                mantenimiento de usuarios
+              </a>
+    </div>
+</div>
+    <div class="dropdown">
+ 
+    <button class="dropbtn">
+        Bodegas</button>
+        <div class="dropdown-content">
+            <a (click)="cambiar('createbod')" class="nav-link" >
+                Creacion de Bodegas
+              </a>  
+           <a (click)="cambiar('listbod')" class="nav-link" routerLinkActive="active">
+              mantenimiento de bodegas
+            </a>
+        </div>
+    </div>
+    <div class="dropdown">
+        <button class="dropbtn">
+            Articulos</button>
+            <div class="dropdown-content">
+                <a (click)="cambiar('createart')" class="nav-link" routerLinkActive="active">
+                    creacion de articulos
+                  </a>
+               
+                
+                  <a (click)="cambiar('listart')" class="nav-link" routerLinkActive="active">
+                    Mantenimiento de articulos
+                  </a>
+            </div>
+      
+</div>
+        
+
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">User name</label>
+        <input type="text" class="form-control" name="unit_name" formControlName="unit_name" #unit_name placeholder="coloque user name"/>
+      </div>
+      <div *ngIf="angForm.controls['unit_name'].invalid && (angForm.controls['unit_name'].dirty || angForm.controls['unit_name'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['unit_name'].errors.required">
+          Users name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Password</label>
+        <input type="password" class="form-control" name="unit_price" formControlName="unit_price" #unit_price  placeholder="coloque password"/>
+      </div>
+      <div *ngIf="angForm.controls['unit_price'].invalid && (angForm.controls['unit_price'].dirty || angForm.controls['unit_price'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['unit_price'].errors.required">
+          Password is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Permision</label>
+        <select class="form-control" name="permition" formControlName="permition" #permition>
+          <option value="consultor">consultor</option>
+          <option value="admin">admin</option>
+          <option value="administrador">administrador</option>
+          </select>
+      </div>
+      <div class="form-group" >
+        <label class="col-md-4">Bodega</label>
+        <select  class="form-control" name="bodega" formControlName="bodega" #bodega >
+          <option  *ngFor="let bod of bodegas" [value]="bod.bodega_name">{{bod.bodega_name}}</option> 
+          </select>
+      </div>
+      <div class="form-group">
+        <button (click)="addAdUnit(unit_name.value, unit_price.value,permition.value,bodega.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Create user</button>
+      </div>
+    </form>
+  </div>
+</div>
