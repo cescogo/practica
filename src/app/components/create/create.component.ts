@@ -14,6 +14,7 @@ export class CreateComponent implements OnInit {
   angForm: FormGroup;
   adunits: AdUnit[];
   bodegas: AdBodegas[];
+  user:boolean=false;
 
   constructor(private adunitservice: AdunitService, private fb: FormBuilder,private router: Router) { 
     this.createForm();
@@ -38,8 +39,13 @@ export class CreateComponent implements OnInit {
 
 
   ngOnInit() {
+    if(localStorage.getItem("user")!=null)
+    {
+      this.user=true;
+      this.getBodegas();
+    }
     //this.adunitservice.setUserName(localStorage.getItem("user"));// obtener del session storage
-    this.getBodegas();
+   
   }
 
   getBodegas()
@@ -57,6 +63,12 @@ export class CreateComponent implements OnInit {
   {
     console.log("lugar: "+lugar);
     this.router.navigate([lugar]);
+  }
+
+  logout()
+  {
+    localStorage.clear();
+    this.router.navigate(["login"])
   }
 
 }

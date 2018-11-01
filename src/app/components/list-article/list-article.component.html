@@ -1,3 +1,8 @@
+<div *ngIf="!user">
+    usuario no logueado
+</div>
+
+<div *ngIf="user">
 <div class="dropdown">
         <button class="dropbtn" *ngIf="show">
           Usuarios</button>
@@ -13,7 +18,7 @@
       </div>
           <div class="dropdown">
        
-          <button class="dropbtn">
+          <button class="dropbtn" *ngIf="show">
               Bodegas</button>
               <div class="dropdown-content">
                   <a (click)="cambiar('createbod')" class="nav-link" >
@@ -24,17 +29,24 @@
                   </a>
               </div>
           </div>
-          <div class="dropdown">
+          <div class="dropdown" *ngIf="showadmin">
               <button class="dropbtn">
                   Articulos</button>
                   <div class="dropdown-content">
                       <a (click)="cambiar('createart')" class="nav-link" routerLinkActive="active">
                           creacion de articulos
                         </a>
+                       
                      
                   </div>
             
       </div>
+      <div class="out">
+        
+        <button (click)="logout()" >
+            logout
+        </button>
+        </div>
 <table class="table table-hover">
   <thead>
   <tr>
@@ -57,3 +69,4 @@
       </tr>
   </tbody>
 </table>
+</div>

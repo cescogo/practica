@@ -14,6 +14,7 @@ export class EditBodegasComponent implements OnInit {
 
   adunit: any={};
   angForm: FormGroup;
+  user:boolean=false;
   
 
   constructor(private route: ActivatedRoute,
@@ -47,11 +48,16 @@ export class EditBodegasComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.route.params.subscribe(params => {
-        this.adunitservice.editAdBodega(params['id']).subscribe(res => {
-          this.adunit = res;
+      if(localStorage.getItem("user")!=null)
+      {
+        this.route.params.subscribe(params => {
+          this.adunitservice.editAdBodega(params['id']).subscribe(res => {
+            this.adunit = res;
+        });
       });
-    });
+      this.user=true;
+      }
+   
    
   }
   cambiar(lugar)
@@ -60,5 +66,10 @@ export class EditBodegasComponent implements OnInit {
     this.router.navigate([lugar]);
   }
 
+  logout()
+  {
+    localStorage.clear()
+    this.router.navigate(["login"])
+  }
 
 }

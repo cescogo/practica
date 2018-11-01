@@ -12,6 +12,7 @@ export class EditArticleComponent implements OnInit {
   
   adunit: any={};
   angForm: FormGroup;
+  user:boolean=false;
   
 
   constructor(private route: ActivatedRoute,
@@ -61,16 +62,27 @@ export class EditArticleComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.route.params.subscribe(params => {
-        this.adunitservice.editAdArticulos(params['id']).subscribe(res => {
-          this.adunit = res;
+      if(localStorage.getItem("user")!=null)
+      {
+        this.route.params.subscribe(params => {
+          this.adunitservice.editAdArticulos(params['id']).subscribe(res => {
+            this.adunit = res;
+        });
       });
-    });
+      this.user=true;
+      }
+     
    
   }
   cambiar(lugar)
   {
     console.log("lugar: "+lugar);
     this.router.navigate([lugar]);
+  }
+
+  logout()
+  {
+    localStorage.clear()
+    this.router.navigate(["login"])
   }
 }

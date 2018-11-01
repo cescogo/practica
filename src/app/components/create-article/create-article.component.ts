@@ -11,6 +11,7 @@ import {  Router } from '@angular/router';
 export class CreateArticleComponent implements OnInit {
 
   angForm: FormGroup;
+  user:boolean=false;
   
   constructor(private adunitservice: AdunitService, private fb: FormBuilder,private router: Router) 
   {
@@ -33,11 +34,22 @@ export class CreateArticleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.adunitservice.setUserName(localStorage.getItem("user"));// obtener del session storage
+    if(localStorage.getItem("user")!=null)
+    {
+      this.user=true;
+      this.adunitservice.setUserName(localStorage.getItem("user"));// obtener del session storage
+    }
+    
   }
   cambiar(lugar)
   {
     console.log("lugar: "+lugar);
     this.router.navigate([lugar]);
+  }
+
+  logout()
+  {
+    localStorage.clear();
+    this.router.navigate(["login"])
   }
 }

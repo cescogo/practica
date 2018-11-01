@@ -1,3 +1,8 @@
+<div *ngIf="!user">
+usuario no logueado
+</div>
+
+<div *ngIf="user">
 <div class="dropdown">
     <button class="dropbtn">
       Usuarios</button>
@@ -32,7 +37,16 @@
                       Mantenmimiento de articulos
                     </a>
               </div>
+
+             
         
+  </div>
+  <div>
+  <div class="dropdown">
+      <button (click)="logout()" class="dropbtn">
+        logout
+      </button>
+    </div>
   </div>
 <div class="card">
   <div class="card-body">
@@ -83,3 +97,4 @@
   </div>
 </div>
 
+</div>

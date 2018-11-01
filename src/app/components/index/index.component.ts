@@ -11,6 +11,7 @@ import {  Router } from '@angular/router';
 export class IndexComponent implements OnInit {
 
   adunits: AdUnit[];
+  user:boolean=false;
 
   constructor(private adunitservice: AdunitService,private router: Router) { }
 
@@ -31,11 +32,23 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getUsers();
+    if(localStorage.getItem("user")!=null)
+    {
+      this.getUsers();
+      this.user=true;
+    }
+
+    
   }
   cambiar(lugar)
   {
     console.log("lugar: "+lugar);
     this.router.navigate([lugar]);
+  }
+
+  logout()
+  {
+    localStorage.clear()
+    this.router.navigate(["login"])
   }
 }

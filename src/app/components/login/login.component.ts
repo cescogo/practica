@@ -41,8 +41,15 @@ export class LoginComponent implements OnInit {
     this.adunitservice.getUser(user).subscribe((dato:AdUnit)=>
     {this.User=dato;
       console.log("usuario traido:"+ dato.user_name);
-      if(dato.user_name==user && dato.password==password && dato.permition=="administrador" )
-    { this.router.navigate(['index']);
+      if(dato.user_name==user && dato.password==password)
+      {
+      if( dato.permition=="administrador" )
+    { this.router.navigate(['index']);}
+    else 
+        {
+      this.router.navigate(['listart']);
+    }
+
     
       localStorage.setItem("user",user)
       localStorage.setItem("permiso", dato.permition.toString())

@@ -16,6 +16,7 @@ export class EditComponent implements OnInit {
   adunit: any={};
   angForm: FormGroup;
   bodegas: AdBodegas[];
+  user:boolean=false;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -57,12 +58,18 @@ export class EditComponent implements OnInit {
     }
 
     ngOnInit() {
-      this.route.params.subscribe(params => {
-        this.adunitservice.editAdUnit(params['id']).subscribe(res => {
-          this.adunit = res;
+
+      if(localStorage.getItem("user")!=null)
+      {
+        this.route.params.subscribe(params => {
+          this.adunitservice.editAdUnit(params['id']).subscribe(res => {
+            this.adunit = res;
+        });
       });
-    });
-    this.getBodegas();
+      this.getBodegas();
+      this.user=true;
+      }
+     
   }
   cambiar(lugar)
   {
@@ -76,5 +83,11 @@ export class EditComponent implements OnInit {
     .subscribe((data: AdBodegas[]) => {
     this.bodegas = data;
   });
+}
+
+logout()
+{
+  localStorage.clear();
+  this.router.navigate(["login"]);
 }
 }

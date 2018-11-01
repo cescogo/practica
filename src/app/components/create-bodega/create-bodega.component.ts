@@ -11,6 +11,7 @@ import {  Router } from '@angular/router';
 export class CreateBodegaComponent implements OnInit {
 
   angForm: FormGroup;
+  user:boolean=false;
   
   constructor(private adunitservice: AdunitService, private fb: FormBuilder,private router: Router) 
   {
@@ -31,12 +32,22 @@ export class CreateBodegaComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(localStorage.getItem("user")!=null)
+    {
+      this.user=true;
     this.adunitservice.setUserName(localStorage.getItem("user"));// obtener del session storage
+    }
   }
   cambiar(lugar)
   {
     console.log("lugar: "+lugar);
     this.router.navigate([lugar]);
+  }
+
+  logout()
+  {
+    localStorage.clear();
+    this.router.navigate(["login"])
   }
 
 }

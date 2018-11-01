@@ -13,11 +13,19 @@ export class ListArticleComponent implements OnInit {
   adunits: AdUnit[];
   permi: String;
   show:Boolean= false;
+  showadmin: boolean=false;
+  user:boolean=false;
   constructor(private adunitservice: AdunitService,private router: Router) { 
     this.permi=localStorage.getItem("permiso");
-    if(this.permi=="consul")
+    if(this.permi=="administrador")
     {
       this.show=true;
+      this.showadmin=true;
+    }
+
+    if(this.permi=="admin")
+    {
+      this.showadmin=true;
     }
   }
   getArticulos()
@@ -30,6 +38,11 @@ export class ListArticleComponent implements OnInit {
   }
   ngOnInit() {
     this.getArticulos();
+    console.log(localStorage.getItem("user"))
+    if(localStorage.getItem("user")!=null)
+    {
+      this.user=true;
+    }
   }
   cambiar(lugar)
   {
@@ -41,6 +54,12 @@ export class ListArticleComponent implements OnInit {
       console.log('Deleted');
       //this.router.navigate(["listbod"]);
     });
+  }
+
+  logout()
+  {
+    localStorage.clear();
+    this.cambiar("login");
   }
 
 }
