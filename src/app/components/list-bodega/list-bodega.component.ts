@@ -12,6 +12,8 @@ import {  Router } from '@angular/router';
 export class ListBodegaComponent implements OnInit {
 
   adunits: AdUnit[];
+  user:boolean=false;
+
   constructor(private adunitservice: AdunitService,private router: Router) { }
   getBodegas()
   {
@@ -22,7 +24,12 @@ export class ListBodegaComponent implements OnInit {
   });
   }
   ngOnInit() {
-    this.getBodegas();
+    if(localStorage.getItem("user")!=null)
+    {
+      this.getBodegas();
+      this.user=true;
+    }
+    
   }
   cambiar(lugar)
   {
@@ -37,4 +44,9 @@ export class ListBodegaComponent implements OnInit {
     
   }
 
+  logout()
+  {
+    localStorage.clear();
+    this.router.navigate[("login")];
+  }
 }
