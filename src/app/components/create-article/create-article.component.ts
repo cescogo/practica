@@ -32,8 +32,13 @@ export class CreateArticleComponent implements OnInit {
 
   
   addAdArticulo( codigo_articulo,article_name,description,precio,bodega) {
-    this.adunitservice.addAdArticulo(codigo_articulo,article_name,description,precio,bodega);
-    this.router.navigate[("createart")]
+  
+     this.adunitservice.addAdArticulo(codigo_articulo,article_name,description,precio,bodega);
+    
+
+    //this.router.navigate(["listart"])
+    
+    
     
   }
 
@@ -65,5 +70,6 @@ export class CreateArticleComponent implements OnInit {
     .subscribe((data: AdBodegas[]) => {
     this.bodegas = data;
   });
+}
  
 }
