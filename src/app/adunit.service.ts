@@ -131,12 +131,13 @@ setUserName(user)
                .get(`${this.uribod}/edit/${id}`);
    }
   /////////////////////////////articulos metodos /////////////////////////////////
-  addAdArticulo( codigo_articulo,article_name,description,precio_article) {
+  addAdArticulo( codigo_articulo,article_name,description,precio_article,bodega) {
     const obj = {
       codigo: codigo_articulo,
       articulo_name: article_name,
       descripcion:description,
       precio: precio_article,
+      bodega:bodega
 
 
     };

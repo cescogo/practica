@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,  FormBuilder,  Validators } from '@angular/forms';
 import { AdunitService } from '../../adunit.service';
 import {  Router } from '@angular/router';
+import { AdBodegas } from './AdBodegas';
 
 @Component({
   selector: 'app-create-article',
@@ -12,6 +13,7 @@ export class CreateArticleComponent implements OnInit {
 
   angForm: FormGroup;
   user:boolean=false;
+  bodegas: AdBodegas[];
   
   constructor(private adunitservice: AdunitService, private fb: FormBuilder,private router: Router) 
   {
@@ -23,13 +25,15 @@ export class CreateArticleComponent implements OnInit {
       codigo: ['', Validators.required ],
       articulo_name: ['', Validators.required ],
       description: ['', Validators.required ],
-      precio: ['', Validators.required ]
+      precio: ['', Validators.required ],
+      bodega:['', Validators.required ]
    });
   }
 
   
-  addAdArticulo( codigo_articulo,article_name,description,precio) {
-    this.adunitservice.addAdArticulo(codigo_articulo,article_name,description,precio);
+  addAdArticulo( codigo_articulo,article_name,description,precio,bodega) {
+    this.adunitservice.addAdArticulo(codigo_articulo,article_name,description,precio,bodega);
+    this.router.navigate[("createart")]
     
   }
 
@@ -38,6 +42,7 @@ export class CreateArticleComponent implements OnInit {
     {
       this.user=true;
       this.adunitservice.setUserName(localStorage.getItem("user"));// obtener del session storage
+      this.getBodegas();
     }
     
   }
@@ -52,4 +57,13 @@ export class CreateArticleComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(["login"])
   }
+
+  getBodegas()
+  {
+    this.adunitservice
+    .getAdBodegas()
+    .subscribe((data: AdBodegas[]) => {
+    this.bodegas = data;
+  });
+ 
 }

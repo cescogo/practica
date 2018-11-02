@@ -36,14 +36,11 @@ usuario no logueado
                   <a (click)="cambiar('listart')" class="nav-link" routerLinkActive="active">
                       Mantenmimiento de articulos
                     </a>
-              </div>
-
-             
-        
+              </div>    
   </div>
-  <div>
   <div class="dropdown">
-      <button (click)="logout()" class="dropbtn">
+  <div >
+      <button (click)="logout()" class="dropbtnl">
         logout
       </button>
     </div>
@@ -89,9 +86,15 @@ usuario no logueado
            El precio del articulo es requerido.
           </div>
         </div>  
+        <div class="form-group" >
+          <label class="col-md-4">Bodega</label>
+          <select  class="form-control" name="bodega" formControlName="bodega" #bodega >
+            <option  *ngFor="let bod of bodegas" [value]="bod.bodega_name">{{bod.bodega_name}}</option> 
+            </select>
+        </div>
      
       <div class="form-group">
-        <button (click)="addAdArticulo(codigo.value, articulo_name.value,description.value,precio.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Create articulo</button>
+        <button (click)="addAdArticulo(codigo.value, articulo_name.value,description.value,precio.value,bodega.value)" [disabled]="angForm.pristine || angForm.invalid" class="btn btn-primary">Create articulo</button>
       </div>
     </form>
   </div>
