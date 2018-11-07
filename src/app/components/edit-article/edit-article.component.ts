@@ -27,11 +27,13 @@ export class EditArticleComponent implements OnInit {
         codigo: ['', Validators.required ],
         articulo_name: ['', Validators.required ],
         description: ['', Validators.required ],
-        precio: ['', Validators.required ]
+        precio: ['', Validators.required ],
+        cantidad:['',Validators.required]
      });
     }
 
-    updateAdArticulo(codigo, articulo_name,description,precio) {
+    updateAdArticulo(codigo, articulo_name,description,precio,cantidad) {
+      console.log(description.length)
       if(codigo.length==0)
       {
         
@@ -50,12 +52,22 @@ export class EditArticleComponent implements OnInit {
         precio=this.adunit.precio;
         
       }
+      if(cantidad.length==0)
+      {
+        
+        cantidad=this.adunit.cantidad;
+        
+      }
+      if(description.length==0)
+      {
+        description=this.adunit.descripcion;
+      }
       console.log(codigo)
   
      
           
       this.route.params.subscribe(params => {
-          this.adunitservice.updateAdArticulos(codigo,articulo_name,description,precio, params['id']);
+          this.adunitservice.updateAdArticulos(codigo,articulo_name,description,precio, cantidad,params['id']);
           this.router.navigate(['listart']);
       });
      

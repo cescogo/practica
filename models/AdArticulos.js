@@ -19,6 +19,9 @@ let AdArticulo = new Schema({
   },
   bodega:{
     type:String
+  },
+  cantidad:{
+    type:String
   }
 },{
     collection: 'articulos'

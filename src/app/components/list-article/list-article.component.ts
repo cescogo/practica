@@ -30,18 +30,34 @@ export class ListArticleComponent implements OnInit {
   }
   getArticulos()
   {
+    this.adunitservice.getAdArticulos()
+    .subscribe((data: AdUnit[]) => {
+    this.adunits = data;
+  });
+  }
+  getArticulosB(bodega)
+  {
     this.adunitservice
-    .getAdArticulos()
+    .getArticulos(bodega)
     .subscribe((data: AdUnit[]) => {
     this.adunits = data;
   });
   }
   ngOnInit() {
-    this.getArticulos();
+    
     console.log(localStorage.getItem("user"))
     if(localStorage.getItem("user")!=null)
     {
       this.user=true;
+      if(localStorage.getItem("permiso").toString()=="administrador")
+      {
+          this.getArticulos();
+      }
+      else
+      {
+        this.getArticulosB(localStorage.getItem("bodega").toString());
+      }
+      
     }
   }
   cambiar(lugar)

@@ -45,8 +45,8 @@
         
   </div>
 
-  <div>
-    <div class="dropdown">
+  <div class="dropdown">
+    <div >
     <button (click)="logout()" class="dropbtnl">
       logout
     </button>
@@ -66,7 +66,7 @@
             </div>
         <div class="form-group">
           <label class="col-md-4">Nombre articulo</label>
-          <input type="text" class="form-control" name="articulo_name" formControlName="articulo_name" #articulo_name placeholder="coloque nombre articulo"/>
+          <input type="text" class="form-control" name="articulo_name" formControlName="articulo_name" #articulo_name placeholder="coloque nombre articulo" [(ngModel)] = "adunit.articulo_name"/>
         </div>
         <div *ngIf="angForm.controls['articulo_name'].invalid && (angForm.controls['articulo_name'].dirty || angForm.controls['articulo_name'].touched)" class="alert alert-danger">
           <div *ngIf="angForm.controls['articulo_name'].errors.required">
@@ -93,9 +93,19 @@
              El precio del articulo es requerido.
             </div>
           </div>  
+
+          <div class="form-group">
+            <label class="col-md-4">Cantidad de articulos</label>
+            <input type="number" class="form-control" name="cantidad" formControlName="cantidad" #cantidad placeholder="coloque la cantidad de articulos"/>
+          </div>
+          <div *ngIf="angForm.controls['cantidad'].invalid && (angForm.controls['cantidad'].dirty || angForm.controls['cantidad'].touched)" class="alert alert-danger">
+            <div *ngIf="angForm.controls['cantidad'].errors.required">
+             La cantidad del articulo es requerido.
+            </div>
+          </div> 
        
         <div class="form-group">
-          <button (click)="updateAdArticulo(codigo.value, articulo_name.value,description.value,precio.value)" class="btn btn-primary">Editar articulo</button>
+          <button (click)="updateAdArticulo(codigo.value, articulo_name.value,description.value,precio.value,cantidad.value)" class="btn btn-primary">Editar articulo</button>
         </div>
       </form>
     </div>

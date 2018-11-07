@@ -147,6 +147,15 @@ setUserName(user)
         .subscribe(res => console.log('Done'));
   }
 
+  getArticulos(bodega) {// cambiar usuarios
+    //console.log("adunit service user: "+bodega)
+     return this
+           .http
+           .get(`${this.uriart}/get/${bodega}`);
+          
+  
+  }
+
   getAdArticulos() {
     return this
            .http
@@ -159,7 +168,7 @@ deleteAdArticulos(id) {
             .get(`${this.uriart}/delete/${id}`);
 }
 
-updateAdArticulos(codigo_articulo,article_name,description,precio_article, id) {
+updateAdArticulos(codigo_articulo,article_name,description,precio_article,cantidad, id) {
  
 
   const obj = {
@@ -167,6 +176,7 @@ updateAdArticulos(codigo_articulo,article_name,description,precio_article, id) {
     articulo_name: article_name,
     descripcion:description,
     precio: precio_article,
+    cantidad:cantidad,
 
 
   };

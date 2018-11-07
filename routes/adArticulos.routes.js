@@ -29,6 +29,19 @@ adArticulosRoutes.route('/').get(function (req, res) {
   });
 });
 
+//obtain specific article 
+adArticulosRoutes.route('/get/:bodega').get(function (req, res) {
+  console.log("ruta adunit: "+req.params.bodega);
+  AdArticulo.find({bodega:req.params.bodega},function (err, adArticulos){
+  if(err){
+    console.log(err);
+  }
+  else {
+    console.log("resultado busqueda: "+adArticulos.bodega);
+    res.json(adArticulos);
+  }
+});
+});
 // Defined edit route
 adArticulosRoutes.route('/edit/:id').get(function (req, res) {
   let id = req.params.id;
@@ -43,11 +56,13 @@ adArticulosRoutes.route('/update/:id').post(function (req, res) {
     if (!adArticulos)
       return next(new Error('Could not load Document'));
     else {
+      console.log(req.body.cantidad)
       adArticulos.codigo = req.body.codigo;
       adArticulos.articulo_name = req.body.articulo_name;
       adArticulos.descripcion=req.body.descripcion
       adArticulos.precio=req.body.precio;
-      adArticulos.bodega=req.body.bodega;
+      //adArticulos.bodega=req.body.bodega;
+      adArticulos.cantidad=req.body.cantidad;
 
       adArticulos.save().then(adArticulos => {
           res.json('Update complete');
@@ -67,5 +82,7 @@ adArticulosRoutes.route('/delete/:id').get(function (req, res) {
         else res.json('Successfully removed');
     });
 });
+
+
 
 module.exports = adArticulosRoutes;

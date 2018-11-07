@@ -34,6 +34,7 @@ export class CreateArticleComponent implements OnInit {
   addAdArticulo( codigo_articulo,article_name,description,precio,bodega) {
   
      this.adunitservice.addAdArticulo(codigo_articulo,article_name,description,precio,bodega);
+     this.angForm.reset();
     
 
     //this.router.navigate(["listart"])

@@ -3,4 +3,5 @@ export interface AdUnit {
     user_name: String;
     password: String;
     permition: String;
+    bodega:String;
 }

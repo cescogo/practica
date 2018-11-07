@@ -54,7 +54,8 @@
       <td>codigo</td>
       <td>Nombre</td>
       <td>descripcion</td>
-      <td>precio</td>
+      <td *ngIf="showadmin">precio </td>
+      <td>cantidad</td>
       <td colspan="2">Actions</td>
   </tr>
   </thead>
@@ -64,9 +65,11 @@
           <td>{{ adunit.codigo }}</td>
           <td>{{ adunit.articulo_name }}</td>
           <td>{{ adunit.descripcion }}</td>
-          <td>{{ adunit.precio }}</td>
-          <td><a [routerLink]="['/editart', adunit._id]" class="btn btn-primary">Edit</a></td>
-          <td><button (click)="deleteAdArticulo(adunit._id)"  class="btn btn-danger">Delete</button></td>
+          <td *ngIf="showadmin">{{ adunit.precio }}</td>
+          <td>{{adunit.cantidad}}</td>
+          <td *ngIf="showadmin"><a [routerLink]="['/editart', adunit._id]" class="btn btn-primary">Edit</a></td>
+          <td *ngIf="showadmin"><button (click)="deleteAdArticulo(adunit._id)"  class="btn btn-danger">Delete</button></td>
+          <td *ngIf="!showadmin"><input type="number" min="0" max="{{adunit.cantidad}}" ></td>
       </tr>
   </tbody>
 </table>
