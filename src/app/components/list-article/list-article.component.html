@@ -68,8 +68,21 @@
           <td *ngIf="showadmin">{{ adunit.precio }}</td>
           <td>{{adunit.cantidad}}</td>
           <td *ngIf="showadmin"><a [routerLink]="['/editart', adunit._id]" class="btn btn-primary">Edit</a></td>
-          <td *ngIf="showadmin"><button (click)="deleteAdArticulo(adunit._id)"  class="btn btn-danger">Delete</button></td>
-          <td *ngIf="!showadmin"><input type="number" min="0" max="{{adunit.cantidad}}" ></td>
+          <td *ngIf="showadmin"><button (click)="deleteAdArticulo(adunit._id)"  class="btn btn-danger" >Delete</button></td>
+       
+          <td *ngIf="!showadmin">
+          
+                <input type="number" [(ngModel)]= "adunit.cantidadArestar">
+          
+                
+        </td>
+       
+        <td *ngIf="!showadmin">
+               
+                <input type="checkbox" (click)="sumar(adunit)"  />
+                
+        </td>
+    
       </tr>
   </tbody>
 </table>

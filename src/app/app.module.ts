@@ -18,7 +18,7 @@ import { ListBodegaComponent } from './components/list-bodega/list-bodega.compon
 import { ListArticleComponent } from './components/list-article/list-article.component';
 import { EditArticleComponent } from './components/edit-article/edit-article.component';
 import { EditBodegasComponent } from './components/edit-bodegas/edit-bodegas.component';
-
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -87,7 +87,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     SlimLoadingBarModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [ AdunitService ],
   bootstrap: [AppComponent]

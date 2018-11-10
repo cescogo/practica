@@ -64,7 +64,7 @@ adArticulosRoutes.route('/update/:id').post(function (req, res) {
       //adArticulos.bodega=req.body.bodega;
       adArticulos.cantidad=req.body.cantidad;
 
-      adArticulos.save().then(adArticulos => {
+        save().then(adArticulos => {
           res.json('Update complete');
       })
       .catch(err => {
